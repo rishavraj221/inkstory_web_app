@@ -14,7 +14,7 @@ const Home = () => {
     setDomLoaded(true);
   }, []);
 
-  const vidContWidth = width / 2 - width * 0.1;
+  const vidContWidth = width > 600 ? width / 2 - width * 0.1 : 0.9 * width;
 
   return (
     <div className={styles.container}>
@@ -46,7 +46,7 @@ const Home = () => {
           <iframe style={{ height: vidContWidth, width: vidContWidth }} src='/psm1.pdf' />
         </div>
 
-        <div className={styles.vidContainer} style={{ flexDirection: 'row-reverse'}}>
+        <div className={styles.vidContainer} style={{ flexDirection: width > 600 ? 'row-reverse' : 'column'}}>
           {domLoaded && (
             <ReactPlayer
               url="https://inkstory.s3.ap-south-1.amazonaws.com/Videos/pom_part2.mp4"

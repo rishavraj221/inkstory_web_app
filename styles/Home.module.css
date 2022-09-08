@@ -124,6 +124,7 @@
     width: 100%;
     flex-direction: column;
   }
+
   .vidContainer {
     flex-direction: column;
     justify-content: space-between;

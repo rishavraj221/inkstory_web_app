@@ -6,6 +6,21 @@ import ReactPlayer from "react-player";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import styles from "../styles/Home.module.css";
 
+const page_data = [
+  {
+    videoURL: "https://inkstory.s3.ap-south-1.amazonaws.com/Videos/psy_vid1.mp4",
+    pdfURL: "/psm1.pdf"
+  },
+  {
+    videoURL: "https://inkstory.s3.ap-south-1.amazonaws.com/Videos/pom_part2.mp4",
+    pdfURL: "/psm2.pdf"
+  },
+  {
+    videoURL: "https://inkstory.s3.ap-south-1.amazonaws.com/Videos/pom_part3.mp4",
+    pdfURL: "/psm3.pdf"
+  },
+]
+
 const Home = () => {
   const { width, height } = useWindowDimensions();
   const [domLoaded, setDomLoaded] = useState(false);
@@ -34,29 +49,17 @@ const Home = () => {
 
         <p className={styles.description}></p>
 
-        <div className={styles.vidContainer}>
+        {page_data.map((pd, i) => <div className={styles.vidContainer} style={{ flexDirection: width > 600 ? i % 2 === 0 ? 'row' : 'row-reverse' : 'column'}}>
           {domLoaded && (
             <ReactPlayer
-              url="https://inkstory.s3.ap-south-1.amazonaws.com/Videos/psy_vid1.mp4"
+              url={pd['videoURL']}
               width={vidContWidth}
               height={vidContWidth}
               controls
             />
           )}
-          <iframe style={{ height: vidContWidth, width: vidContWidth }} src='/psm1.pdf' />
-        </div>
-
-        <div className={styles.vidContainer} style={{ flexDirection: width > 600 ? 'row-reverse' : 'column'}}>
-          {domLoaded && (
-            <ReactPlayer
-              url="https://inkstory.s3.ap-south-1.amazonaws.com/Videos/pom_part2.mp4"
-              width={vidContWidth}
-              height={vidContWidth}
-              controls
-            />
-          )}
-          <iframe style={{ height: vidContWidth, width: vidContWidth }} src='/psm2.pdf' />
-        </div>
+          <iframe style={{ height: vidContWidth, width: vidContWidth }} src={pd['pdfURL']} />
+        </div>)}
       </main>
 
       <footer className={styles.footer}></footer>

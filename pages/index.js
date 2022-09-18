@@ -49,7 +49,7 @@ const Home = () => {
 
         <p className={styles.description}></p>
 
-        {page_data.map((pd, i) => <div className={styles.vidContainer} style={{ flexDirection: width > 600 ? i % 2 === 0 ? 'row' : 'row-reverse' : 'column'}}>
+        {page_data.map((pd, i) => <div key={i} className={styles.vidContainer} style={{ flexDirection: width > 600 ? i % 2 === 0 ? 'row' : 'row-reverse' : 'column'}}>
           {domLoaded && (
             <ReactPlayer
               url={pd['videoURL']}

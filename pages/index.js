@@ -8,18 +8,26 @@ import styles from "../styles/Home.module.css";
 
 const page_data = [
   {
-    videoURL: "https://inkstory.s3.ap-south-1.amazonaws.com/Videos/psy_vid1.mp4",
-    pdfURL: "/psm1.pdf"
+    videoURL:
+      "https://inkstory.s3.ap-south-1.amazonaws.com/Videos/psy_vid1.mp4",
+    pdfURL: "/psm1.pdf",
   },
   {
-    videoURL: "https://inkstory.s3.ap-south-1.amazonaws.com/Videos/pom_part2.mp4",
-    pdfURL: "/psm2.pdf"
+    videoURL:
+      "https://inkstory.s3.ap-south-1.amazonaws.com/Videos/pom_part2.mp4",
+    pdfURL: "/psm2.pdf",
   },
   {
-    videoURL: "https://inkstory.s3.ap-south-1.amazonaws.com/Videos/pom_part3.mp4",
-    pdfURL: "/psm3.pdf"
+    videoURL:
+      "https://inkstory.s3.ap-south-1.amazonaws.com/Videos/pom_part3.mp4",
+    pdfURL: "/psm3.pdf",
   },
-]
+  {
+    videoURL:
+      "https://inkstory.s3.ap-south-1.amazonaws.com/Videos/Alchemist/alcm1.mp4",
+    pdfURL: "/alcm1.pdf",
+  },
+];
 
 const Home = () => {
   const { width, height } = useWindowDimensions();
@@ -49,17 +57,29 @@ const Home = () => {
 
         <p className={styles.description}></p>
 
-        {page_data.map((pd, i) => <div key={i} className={styles.vidContainer} style={{ flexDirection: width > 600 ? i % 2 === 0 ? 'row' : 'row-reverse' : 'column'}}>
-          {domLoaded && (
-            <ReactPlayer
-              url={pd['videoURL']}
-              width={vidContWidth}
-              height={vidContWidth}
-              controls
+        {page_data.map((pd, i) => (
+          <div
+            key={i}
+            className={styles.vidContainer}
+            style={{
+              flexDirection:
+                width > 600 ? (i % 2 === 0 ? "row" : "row-reverse") : "column",
+            }}
+          >
+            {domLoaded && (
+              <ReactPlayer
+                url={pd["videoURL"]}
+                width={vidContWidth}
+                height={vidContWidth}
+                controls
+              />
+            )}
+            <iframe
+              style={{ height: vidContWidth, width: vidContWidth }}
+              src={pd["pdfURL"]}
             />
-          )}
-          <iframe style={{ height: vidContWidth, width: vidContWidth }} src={pd['pdfURL']} />
-        </div>)}
+          </div>
+        ))}
       </main>
 
       <footer className={styles.footer}></footer>
